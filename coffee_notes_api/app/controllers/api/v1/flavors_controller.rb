@@ -1,2 +1,2 @@
-class FlavorsController < ApplicationController
+class API::V1::FlavorsController < ApplicationController
 end
