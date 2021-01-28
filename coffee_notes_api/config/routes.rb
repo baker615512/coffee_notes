@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :flavors
-      resources :countries
+      resources :countries do
+        resources :flavors
+      end
     end
   end
 end

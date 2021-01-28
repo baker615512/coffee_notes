@@ -1,12 +1,12 @@
 class API::V1::FlavorsController < ApplicationController
+  before_action :load_country
 
   def index
-    @flavors = Flavor.all
-    render json: @flavors
+    render json: @country.flavors
   end
 
   def create
-    @flavor = Flavor.new(flavor_params)
+    @flavor = @country.flavor.new(flavor_params)
     if @flavor.save
       render json: @flavor
     else
@@ -15,7 +15,7 @@ class API::V1::FlavorsController < ApplicationController
   end
 
   def show
-    @flavor = Flavor.find(params[:id])
+    @flavor = @country.flavor.find(params[:id])
     render json: @flavor
   end
 
@@ -24,5 +24,9 @@ class API::V1::FlavorsController < ApplicationController
   def flavor_params
     params.require(:flavor).permit(:name, :votes, :country_id)
   end
-  
+
+  def load_country
+    @country = Country.find(params[:country_id])
+  end
+
 end
