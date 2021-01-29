@@ -1,3 +1,4 @@
 class Country < ApplicationRecord
-  has_many: Flavors
+  has_many :profiles
+  has_many :flavors, through: :profiles
 end
