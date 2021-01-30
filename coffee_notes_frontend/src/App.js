@@ -4,14 +4,6 @@ import CountriesContainer from './containers/CountriesContainer'
 
 class App extends Component {
 
-  function Home() {
-    return (
-      <div>
-        <h2>Home</h2>
-      </div>
-    );
-  }
-
   render(){
     return (
       <Router>
@@ -26,6 +18,14 @@ class App extends Component {
       </Router>
     );
   }
+}
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
 }
 
 export default App;
