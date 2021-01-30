@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :countries
       resources :flavors 
+      resources :profiles
     end
   end
 end

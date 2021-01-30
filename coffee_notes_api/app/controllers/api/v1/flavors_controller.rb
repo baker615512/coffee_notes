@@ -1,4 +1,4 @@
-class API::V1::FlavorsController < ApplicationController
+class Api::V1::FlavorsController < ApplicationController
   before_action :load_country
 
   def index

@@ -1,3 +1,3 @@
-class API::V1::ProfilesController < ApplicationController
+class Api::V1::ProfilesController < ApplicationController
 
 end

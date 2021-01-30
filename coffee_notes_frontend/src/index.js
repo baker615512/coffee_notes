@@ -8,9 +8,9 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import { reducer } from './redux/reducer'
+import { countriesReducer } from './redux/countriesReducer'
 
-const store = createStore(reducer, compose(applyMiddleware(thunk, logger), 
+const store = createStore(countriesReducer, compose(applyMiddleware(thunk, logger), 
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__()))
 
