@@ -1,5 +1,10 @@
 class Api::V1::FlavorsController < ApplicationController
 
+  def index
+    @flavors = Country.find(params[:country_id]).flavors
+    render json: @flavors
+  end
+
   def create
     @country = Country.find(params[:country_id])
     @flavor = Flavor.where(name: params[:flavor_name]).first_or_initialize
@@ -14,7 +19,7 @@ class Api::V1::FlavorsController < ApplicationController
   private
 
   def flavor_params
-    params.require(:flavor).permit(:name, )
+    params.require(:flavor).permit(:name, country_ids: [])
   end
 
 end
