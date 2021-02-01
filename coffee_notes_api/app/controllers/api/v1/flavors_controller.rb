@@ -7,9 +7,9 @@ class Api::V1::FlavorsController < ApplicationController
 
   def create
     @country = Country.find(params[:country_id])
-    @flavor = Flavor.where(name: params[:flavor_name]).first_or_initialize
-    if !!@country && @flavor != nil && @flavor.country_id != @country.id
-      @country.flavors << @flavor
+    @flavor = Flavor.new(name: params[:flavor_name])
+    if @country && @flavor.save
+      @profile = Profile.create(country_id: @country.id, flavor_id: @flavor.id, votes: 1)
       render json: @flavor
     else
       render json: @flavor.errors

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :countries, only: [:index, :show] do
         resources :flavors, only: [:index, :create]
       end
-      resources :profiles, only: [:show, :update]
+      # resources :profiles, only: [:show, :update]
       resources :flavors, only: [:index, :show] # stretch goal
     end
   end

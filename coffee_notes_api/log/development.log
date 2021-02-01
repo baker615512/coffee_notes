@@ -558,3 +558,408 @@ Processing by Api::V1::CountriesController#index as */*
 Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.4ms | Allocations: 2171)
 
 
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "countries"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "flavors"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "flavors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "profiles"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "profiles" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "votes" integer, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_country_id" ON "profiles" ("country_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_flavor_id" ON "profiles" ("flavor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aprofiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_flavor_id" ON "aprofiles" ("flavor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_country_id" ON "aprofiles" ("country_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aprofiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "profiles"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "profiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "profiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_4d38e58599"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_country_id" ON "profiles" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_flavor_id" ON "profiles" ("flavor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "profiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "aprofiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aprofiles"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aprofiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_flavor_id" ON "aprofiles" ("flavor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_country_id" ON "aprofiles" ("country_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aprofiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "profiles"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "profiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "profiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_4d38e58599"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+, CONSTRAINT "fk_rails_cbcb6ab162"
+FOREIGN KEY ("flavor_id")
+  REFERENCES "flavors" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_country_id" ON "profiles" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_flavor_id" ON "profiles" ("flavor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "profiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "aprofiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aprofiles"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210129224702)[0m
+  [1m[35m (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210126135217),
+(20210126135907),
+(20210129035108),
+(20210129183643),
+(20210129184036),
+(20210129184141),
+(20210129223808);
+
+[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-01 21:53:26.915252"], ["updated_at", "2021-02-01 21:53:26.915252"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "7399880f72a124af3c455389a8e7a5eaac34c013"], ["created_at", "2021-02-01 21:53:26.921190"], ["updated_at", "2021-02-01 21:53:26.921190"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "countries"[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "countries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "flavors"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "flavors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "profiles"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "profiles" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "votes" integer, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_country_id" ON "profiles" ("country_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_flavor_id" ON "profiles" ("flavor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aprofiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_flavor_id" ON "aprofiles" ("flavor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_country_id" ON "aprofiles" ("country_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aprofiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "profiles"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "profiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "profiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_4d38e58599"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_country_id" ON "profiles" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_flavor_id" ON "profiles" ("flavor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "profiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "aprofiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aprofiles"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aprofiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_flavor_id" ON "aprofiles" ("flavor_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_aprofiles_on_country_id" ON "aprofiles" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aprofiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "profiles"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "profiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "profiles" ("id" integer NOT NULL PRIMARY KEY, "votes" integer DEFAULT NULL, "country_id" integer NOT NULL, "flavor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_4d38e58599"
+FOREIGN KEY ("country_id")
+  REFERENCES "countries" ("id")
+, CONSTRAINT "fk_rails_cbcb6ab162"
+FOREIGN KEY ("flavor_id")
+  REFERENCES "flavors" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_country_id" ON "profiles" ("country_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_profiles_on_flavor_id" ON "profiles" ("flavor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "profiles" ("id","votes","country_id","flavor_id","created_at","updated_at")
+                     SELECT "id","votes","country_id","flavor_id","created_at","updated_at" FROM "aprofiles"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aprofiles"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210129224702)[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210126135217),
+(20210126135907),
+(20210129035108),
+(20210129183643),
+(20210129184036),
+(20210129184141),
+(20210129223808);
+
+[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-01 21:53:27.004711"], ["updated_at", "2021-02-01 21:53:27.004711"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-02-01 21:53:27.010295"], ["key", "environment"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "7399880f72a124af3c455389a8e7a5eaac34c013"], ["created_at", "2021-02-01 21:53:27.015379"], ["updated_at", "2021-02-01 21:53:27.015379"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (0.3ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Colombia"], ["image", "https://coffeenotes.s3.us-east-2.amazonaws.com/CO-EPS-02-0003.png"], ["created_at", "2021-02-01 21:53:27.045753"], ["updated_at", "2021-02-01 21:53:27.045753"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (0.3ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Costa Rica"], ["image", "https://coffeenotes.s3.us-east-2.amazonaws.com/CR-EPS-02-0003.png"], ["created_at", "2021-02-01 21:53:27.049794"], ["updated_at", "2021-02-01 21:53:27.049794"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (0.3ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Guatemala"], ["image", "https://coffeenotes.s3.us-east-2.amazonaws.com/GT-EPS-02-0003.png"], ["created_at", "2021-02-01 21:53:27.053617"], ["updated_at", "2021-02-01 21:53:27.053617"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (0.3ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Indonesia"], ["image", "https://coffeenotes.s3.us-east-2.amazonaws.com/ID-EPS-02-0003.png"], ["created_at", "2021-02-01 21:53:27.057711"], ["updated_at", "2021-02-01 21:53:27.057711"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Create (0.3ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Kenya"], ["image", "https://coffeenotes.s3.us-east-2.amazonaws.com/KE-EPS-02-0003.png"], ["created_at", "2021-02-01 21:53:27.061775"], ["updated_at", "2021-02-01 21:53:27.061775"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFlavor Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "flavors" WHERE "flavors"."name" = ? LIMIT ?[0m  [["name", "Caramel"], ["LIMIT", 1]]
+  [1m[36mFlavor Create (0.2ms)[0m  [1m[32mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Caramel"], ["created_at", "2021-02-01 21:53:27.075679"], ["updated_at", "2021-02-01 21:53:27.075679"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFlavor Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "flavors" WHERE "flavors"."name" = ? LIMIT ?[0m  [["name", "Dark Chocolate"], ["LIMIT", 1]]
+  [1m[36mFlavor Create (0.2ms)[0m  [1m[32mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Dark Chocolate"], ["created_at", "2021-02-01 21:53:27.081566"], ["updated_at", "2021-02-01 21:53:27.081566"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFlavor Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "flavors" WHERE "flavors"."name" = ? LIMIT ?[0m  [["name", "Nutty"], ["LIMIT", 1]]
+  [1m[36mFlavor Create (0.2ms)[0m  [1m[32mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Nutty"], ["created_at", "2021-02-01 21:53:27.086357"], ["updated_at", "2021-02-01 21:53:27.086357"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFlavor Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "flavors" WHERE "flavors"."name" = ? LIMIT ?[0m  [["name", "Milk Chocolate"], ["LIMIT", 1]]
+  [1m[36mFlavor Create (0.2ms)[0m  [1m[32mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Milk Chocolate"], ["created_at", "2021-02-01 21:53:27.091804"], ["updated_at", "2021-02-01 21:53:27.091804"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFlavor Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "flavors" WHERE "flavors"."name" = ? LIMIT ?[0m  [["name", "Spice"], ["LIMIT", 1]]
+  [1m[36mFlavor Create (0.2ms)[0m  [1m[32mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Spice"], ["created_at", "2021-02-01 21:53:27.096708"], ["updated_at", "2021-02-01 21:53:27.096708"]]
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFlavor Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "flavors" WHERE "flavors"."name" = ? LIMIT ?[0m  [["name", "Woody"], ["LIMIT", 1]]
+  [1m[36mFlavor Create (0.3ms)[0m  [1m[32mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Woody"], ["created_at", "2021-02-01 21:53:27.112661"], ["updated_at", "2021-02-01 21:53:27.112661"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFlavor Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "flavors" WHERE "flavors"."name" = ? LIMIT ?[0m  [["name", "Floral"], ["LIMIT", 1]]
+  [1m[36mFlavor Create (0.2ms)[0m  [1m[32mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Floral"], ["created_at", "2021-02-01 21:53:27.117042"], ["updated_at", "2021-02-01 21:53:27.117042"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 1], ["flavor_id", 1], ["created_at", "2021-02-01 21:53:27.148665"], ["updated_at", "2021-02-01 21:53:27.148665"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.2ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 1], ["flavor_id", 2], ["created_at", "2021-02-01 21:53:27.154136"], ["updated_at", "2021-02-01 21:53:27.154136"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 1], ["flavor_id", 3], ["created_at", "2021-02-01 21:53:27.160539"], ["updated_at", "2021-02-01 21:53:27.160539"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 1], ["flavor_id", 4], ["created_at", "2021-02-01 21:53:27.166561"], ["updated_at", "2021-02-01 21:53:27.166561"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 1], ["flavor_id", 5], ["created_at", "2021-02-01 21:53:27.172499"], ["updated_at", "2021-02-01 21:53:27.172499"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.2ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 1], ["flavor_id", 6], ["created_at", "2021-02-01 21:53:27.178452"], ["updated_at", "2021-02-01 21:53:27.178452"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 1], ["flavor_id", 7], ["created_at", "2021-02-01 21:53:27.184180"], ["updated_at", "2021-02-01 21:53:27.184180"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 2], ["flavor_id", 1], ["created_at", "2021-02-01 21:53:27.191530"], ["updated_at", "2021-02-01 21:53:27.191530"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 2], ["flavor_id", 2], ["created_at", "2021-02-01 21:53:27.197725"], ["updated_at", "2021-02-01 21:53:27.197725"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 2], ["flavor_id", 3], ["created_at", "2021-02-01 21:53:27.213514"], ["updated_at", "2021-02-01 21:53:27.213514"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProfile Create (1.4ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 2], ["flavor_id", 4], ["created_at", "2021-02-01 21:53:27.219518"], ["updated_at", "2021-02-01 21:53:27.219518"]]
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 2], ["flavor_id", 5], ["created_at", "2021-02-01 21:53:27.231519"], ["updated_at", "2021-02-01 21:53:27.231519"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 2], ["flavor_id", 6], ["created_at", "2021-02-01 21:53:27.237939"], ["updated_at", "2021-02-01 21:53:27.237939"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 2], ["flavor_id", 7], ["created_at", "2021-02-01 21:53:27.244326"], ["updated_at", "2021-02-01 21:53:27.244326"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 3], ["flavor_id", 1], ["created_at", "2021-02-01 21:53:27.251244"], ["updated_at", "2021-02-01 21:53:27.251244"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProfile Create (1.2ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 3], ["flavor_id", 2], ["created_at", "2021-02-01 21:53:27.257401"], ["updated_at", "2021-02-01 21:53:27.257401"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.2ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 3], ["flavor_id", 3], ["created_at", "2021-02-01 21:53:27.265122"], ["updated_at", "2021-02-01 21:53:27.265122"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 3], ["flavor_id", 4], ["created_at", "2021-02-01 21:53:27.271371"], ["updated_at", "2021-02-01 21:53:27.271371"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 3], ["flavor_id", 5], ["created_at", "2021-02-01 21:53:27.277475"], ["updated_at", "2021-02-01 21:53:27.277475"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 3], ["flavor_id", 6], ["created_at", "2021-02-01 21:53:27.284892"], ["updated_at", "2021-02-01 21:53:27.284892"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 3], ["flavor_id", 7], ["created_at", "2021-02-01 21:53:27.292683"], ["updated_at", "2021-02-01 21:53:27.292683"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProfile Create (1.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 4], ["flavor_id", 1], ["created_at", "2021-02-01 21:53:27.299940"], ["updated_at", "2021-02-01 21:53:27.299940"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProfile Create (1.1ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 4], ["flavor_id", 2], ["created_at", "2021-02-01 21:53:27.327541"], ["updated_at", "2021-02-01 21:53:27.327541"]]
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.4ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 4], ["flavor_id", 3], ["created_at", "2021-02-01 21:53:27.342091"], ["updated_at", "2021-02-01 21:53:27.342091"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 4], ["flavor_id", 4], ["created_at", "2021-02-01 21:53:27.350064"], ["updated_at", "2021-02-01 21:53:27.350064"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.4ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 4], ["flavor_id", 5], ["created_at", "2021-02-01 21:53:27.358247"], ["updated_at", "2021-02-01 21:53:27.358247"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 4], ["flavor_id", 6], ["created_at", "2021-02-01 21:53:27.366246"], ["updated_at", "2021-02-01 21:53:27.366246"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mProfile Create (1.1ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 4], ["flavor_id", 7], ["created_at", "2021-02-01 21:53:27.373482"], ["updated_at", "2021-02-01 21:53:27.373482"]]
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.4ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 5], ["flavor_id", 1], ["created_at", "2021-02-01 21:53:27.386599"], ["updated_at", "2021-02-01 21:53:27.386599"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.4ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 5], ["flavor_id", 2], ["created_at", "2021-02-01 21:53:27.395433"], ["updated_at", "2021-02-01 21:53:27.395433"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.4ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 5], ["flavor_id", 3], ["created_at", "2021-02-01 21:53:27.403878"], ["updated_at", "2021-02-01 21:53:27.403878"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 5], ["flavor_id", 4], ["created_at", "2021-02-01 21:53:27.411352"], ["updated_at", "2021-02-01 21:53:27.411352"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 5], ["flavor_id", 5], ["created_at", "2021-02-01 21:53:27.418969"], ["updated_at", "2021-02-01 21:53:27.418969"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 5], ["flavor_id", 6], ["created_at", "2021-02-01 21:53:27.425778"], ["updated_at", "2021-02-01 21:53:27.425778"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFlavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mProfile Create (0.3ms)[0m  [1m[32mINSERT INTO "profiles" ("votes", "country_id", "flavor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["votes", 0], ["country_id", 5], ["flavor_id", 7], ["created_at", "2021-02-01 21:53:27.432634"], ["updated_at", "2021-02-01 21:53:27.432634"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mFlavor Load (0.3ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mProfile Load (0.4ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" LIMIT ?[0m  [["LIMIT", 11]]

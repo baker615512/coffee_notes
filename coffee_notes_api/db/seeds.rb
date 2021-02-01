@@ -19,4 +19,8 @@ Flavor.create(name: "Spice")
 Flavor.create(name: "Woody")
 Flavor.create(name: "Floral")
 
-Profile.create(votes: 10, country_id: 1, flavor_id: 1)
+Country.all.each do |country|
+  Flavor.all.each do |flavor|
+    Profile.create(votes: 0, country_id: country.id, flavor_id: flavor.id)
+  end
+end
