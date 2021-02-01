@@ -4,7 +4,7 @@ export const fetchCountries = () => {
     fetch('http://localhost:3000/api/v1/countries').then(response => {
       return response.json()
     }).then(data => {
-      dispatch({ type: 'ADD_COUNTRIES', countries: data.countries })
+      dispatch({ type: 'ADD_COUNTRIES', countries: data })
     })
   }
 }
