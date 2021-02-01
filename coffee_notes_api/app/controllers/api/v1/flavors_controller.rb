@@ -1,8 +1,10 @@
 class Api::V1::FlavorsController < ApplicationController
 
   def create
-    @flavor = flavor.new(flavor_params)
-    if @flavor.save
+    @country = Country.find(params[:country_id])
+    @flavor = Flavor.where(name: params[:flavor_name]).first_or_initialize
+    if !!@country && @flavor != nil && @flavor.country_id != @country.id
+      @country.flavors << @flavor
       render json: @flavor
     else
       render json: @flavor.errors
@@ -12,7 +14,7 @@ class Api::V1::FlavorsController < ApplicationController
   private
 
   def flavor_params
-    params.require(:flavor).permit(:name)
+    params.require(:flavor).permit(:name, )
   end
 
 end
