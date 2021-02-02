@@ -5,16 +5,16 @@ class Api::V1::FlavorsController < ApplicationController
     render json: @flavors
   end
 
-  def create
-    @country = Country.find(params[:country_id])
-    @flavor = Flavor.new(name: params[:flavor_name])
-    if @country && @flavor.save
-      @profile = Profile.create(country_id: @country.id, flavor_id: @flavor.id, votes: 1)
-      render json: @flavor
-    else
-      render json: @flavor.errors
-    end
-  end
+  #def create
+  #  @country = Country.find(params[:country_id])
+  #  @flavor = Flavor.new(name: params[:flavor_name])
+  #  if @country && @flavor.save
+  #    @profile = Profile.create(country_id: @country.id, flavor_id: @flavor.id, votes: 1)
+  #    render json: @flavor
+  #  else
+  #    render json: @flavor.errors
+  #  end
+  #end
 
   private
 
