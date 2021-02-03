@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Country from '../components/Country'
 import { fetchCountries } from '../redux/actionCreator'
 
 class CountriesContainer extends Component {
@@ -8,16 +9,20 @@ class CountriesContainer extends Component {
     this.props.fetchCountries()
   }
 
+  renderCountries = () => {
+    return this.props.countries.map((country) => <Country key={country.id} name={country.name} imgURL={country.image}/>)
+  }
+
   render(){
     return(
-      <div></div>
+      <div>{this.renderCountries()}</div>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    countryPics: state.countries,
+    countries: state.countries,
     loading: state.loading
   }
 }
