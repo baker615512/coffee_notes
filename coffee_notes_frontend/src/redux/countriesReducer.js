@@ -1,4 +1,4 @@
-export const countriesReducer = (state = {countries: [], loading: false}, action) => {
+export const countriesReducer = (state = {countries: [], selectedCountry: {}, loading: false}, action) => {
   switch(action.type){
     case 'LOADING_COUNTRIES':
       return {
@@ -6,6 +6,9 @@ export const countriesReducer = (state = {countries: [], loading: false}, action
         countries: [...state.countries],
         loading: true
       }
+    case "SET_COUNTRY":
+      const selectedCountry = {...state.countries.find(country => country.id === action.payload.id)}
+      return {...state, selectedCountry}
     case 'ADD_COUNTRIES':
       return {
         ...state,
