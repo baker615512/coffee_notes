@@ -23,3 +23,5 @@ export const profilesReducer = (state = {profiles: []}, action) => {
     default: return state
   }
 }
+
+export default profilesReducer

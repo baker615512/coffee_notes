@@ -8,7 +8,9 @@ export const countriesReducer = (state = {countries: [], selectedCountry: {}, lo
       }
     case "SET_COUNTRY":
       const selectedCountry = {...state.countries.find(country => country.id === action.payload.id)}
-      return {...state, selectedCountry}
+      return {
+        ...state, selectedCountry
+      }
     case 'ADD_COUNTRIES':
       return {
         ...state,

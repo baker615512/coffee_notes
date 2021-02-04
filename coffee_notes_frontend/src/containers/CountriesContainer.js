@@ -10,7 +10,11 @@ class CountriesContainer extends Component {
   }
 
   renderCountries = () => {
-    return this.props.countries.countries.map((country) => <Country key={country.id} name={country.name} imgURL={country.image} id={country.id}/>)
+    return this.props.countries.countries.map((country) => {
+     return <Country key={country.id} 
+     name={country.name} 
+     imgURL={country.image} 
+     id={country.id}/>})
   }
 
   render(){
