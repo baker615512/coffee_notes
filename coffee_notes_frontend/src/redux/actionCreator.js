@@ -16,20 +16,20 @@ export const setCountry = (id) => {
   }
 }
 
-//export const upvoteProfile = (profile) => {
-//  return (dispatch) => {
-//    fetch(`http://localhost:3000/api/v1/countries/${id}/profiles/${id}`, {
-//      headers: {
-//        'Content-Type': 'application/json',
-//        'Accept': 'application/json'
-//      },
-//      method: 'PATCH',
-//      body: JSON.stringify(profile)
-//    })
-//    .then(res => res.json())
-//    .then(vote => dispatch({type: 'UPVOTE_QUOTE', payload: vote}))
-//  }
-//}
+export const upvoteProfile = (id) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/api/v1/profiles/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: 'PATCH',
+      body: JSON.stringify(id)
+    })
+    .then(res => res.json())
+    .then(vote => dispatch({type: 'UPVOTE_PROFILE', payload: vote}))
+  }
+}
 
 //export const downvoteProfile = quoteId => {
 //  return {

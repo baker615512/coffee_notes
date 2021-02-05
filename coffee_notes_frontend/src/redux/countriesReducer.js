@@ -17,6 +17,12 @@ export const countriesReducer = (state = {countries: [], selectedCountry: {}, lo
         countries: action.countries,
         loading: false
       }
+    case 'UPVOTE_PROFILE':
+          const selectedCountryCopy = {...state.selectedCountry}
+          const profile = selectedCountryCopy.profiles.find(profile => profile.id === action.payload.id)
+          profile.votes = action.payload.votes
+          return {...state, selectedCountry: selectedCountryCopy}
+
     default: return state
   }
 }
