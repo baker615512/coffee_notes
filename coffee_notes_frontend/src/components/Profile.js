@@ -11,8 +11,9 @@ const Profile = props => {
   }
 
   return(
-    <div>{props.flavor} - {props.votes}
-    <Button variant="info" id={props.id} onClick={handleOnClick}>Vote</Button>{' '}</div>
+    <div>{props.flavor} - {props.votes} &emsp;
+    <Button variant="info" id={props.id} 
+    onClick={handleOnClick}>Vote</Button>{' '}</div>
   )
 }
 

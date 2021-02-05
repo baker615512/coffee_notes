@@ -9,8 +9,8 @@ class App extends Component {
   render(){
     return (
       <Router>
+        <NavBar />
           <Switch>
-            <NavBar />
             <Route exact path="/" component={CountriesContainer} />
             <Route exact path="/countries/:id" component={ProfilesContainer} />
           </Switch>
