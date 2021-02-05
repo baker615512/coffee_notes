@@ -1,7 +1,8 @@
 class Api::V1::FlavorsController < ApplicationController
 
   def index
-    @flavors = Country.find(params[:country_id]).flavors
+    @country = Country.find(params[:country_id].to_i)
+    @flavors = @country.flavors
     render json: @flavors
   end
 
@@ -16,10 +17,10 @@ class Api::V1::FlavorsController < ApplicationController
   #  end
   #end
 
-  private
+  # private
 
-  def flavor_params
-    params.require(:flavor).permit(:name, country_ids: [])
-  end
+  # def flavor_params
+  #   params.require(:flavor).permit(:name, country_ids: [])
+  # end
 
 end

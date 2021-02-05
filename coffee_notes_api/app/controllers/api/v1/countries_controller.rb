@@ -6,7 +6,7 @@ class Api::V1::CountriesController < ApplicationController
   end
 
   def show
-    @country = Country.find(params[:id])
+    @country = Country.find(params[:id].to_i)
     render json: @country
   end
 end
