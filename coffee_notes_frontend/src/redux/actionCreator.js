@@ -30,10 +30,3 @@ export const upvoteProfile = (id) => {
     .then(vote => dispatch({type: 'UPVOTE_PROFILE', payload: vote}))
   }
 }
-
-//export const downvoteProfile = quoteId => {
-//  return {
-//    type: 'DOWNVOTE_QUOTE',
-//    quoteId
-//  }
-//}
