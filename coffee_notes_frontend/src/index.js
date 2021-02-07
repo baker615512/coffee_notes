@@ -8,16 +8,9 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import { combineReducers } from "redux";
 import { countriesReducer } from './redux/countriesReducer'
-import { profilesReducer } from './redux/profilesReducer'
 
-const rootReducer = combineReducers({
-  countries: countriesReducer,
-  profiles: profilesReducer
-})
-
-const store = createStore(rootReducer, compose(applyMiddleware(thunk, logger), 
+const store = createStore(countriesReducer, compose(applyMiddleware(thunk, logger), 
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__()))
 
