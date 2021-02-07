@@ -1,8 +1,9 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux'
 import { upvoteProfile } from '../redux/actionCreator'
-
 
 const Profile = props => {
 
@@ -11,16 +12,16 @@ const Profile = props => {
   }
 
   return(
-    <div>{props.flavor} - {props.votes} &emsp;
-    <Button variant="info" id={props.id} 
-    onClick={handleOnClick}>Vote</Button>{' '}</div>
+    <Card style={{ width: '28rem' }}>
+      <Card.Body>
+      <ListGroup variant="flush">
+        <ListGroup.Item>{props.flavor} - {props.votes}</ListGroup.Item>
+        <Button variant="info" size="lg" id={props.id} 
+        onClick={handleOnClick}>Vote</Button>{' '}
+      </ListGroup>
+      </Card.Body>
+    </Card>
   )
 }
-
-//const mapStateToProps = state => {
-//  return {
-//    profiles: state.profiles
-//  }
-//}
 
 export default connect(null, {upvoteProfile})(Profile)

@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -11,7 +12,8 @@ const Country = props => {
     props.history.push(`/countries/${props.id}`)
   }
   return(
-      <Card bg={"dark"} 
+    <CardColumns>
+      <Card bg={"dark"}
       text={"white"} 
       style={{ width: '18rem' }}>
         <Card.Img variant="top" src={props.imgURL} />
@@ -20,9 +22,10 @@ const Country = props => {
           <Card.Text>
             Click the button to vote on the flavor profile of {props.name}'s coffee.
           </Card.Text>
-            <Button variant="primary" onClick={handleOnClick}>Vote here</Button> 
+            <Button variant="info" onClick={handleOnClick}>Vote here</Button> 
         </Card.Body>
       </Card>
-    )
+    </CardColumns>
+  )
 }
 export default connect(null, {setCountry})(withRouter(Country))
