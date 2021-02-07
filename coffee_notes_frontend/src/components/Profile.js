@@ -15,7 +15,8 @@ const Profile = props => {
     <Card style={{ width: '28rem' }}>
       <Card.Body>
       <ListGroup variant="flush">
-        <ListGroup.Item>{props.flavor} - {props.votes}</ListGroup.Item>
+        <ListGroup.Item>{props.flavor}</ListGroup.Item>
+        <ListGroup.Item>Vote count: {props.votes}</ListGroup.Item>
         <Button variant="info" size="lg" id={props.id} 
         onClick={handleOnClick}>Vote</Button>{' '}
       </ListGroup>

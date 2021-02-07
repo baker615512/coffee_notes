@@ -18,7 +18,7 @@ class ProfileContainer extends Component {
     return(
       <div>
         <Header name={this.props.selectedCountry.name}/>
-        <h3>{this.renderProfile()}</h3>
+        <h4>{this.renderProfile()}</h4>
       </div>
     )
   }

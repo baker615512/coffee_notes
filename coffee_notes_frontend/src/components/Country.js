@@ -15,7 +15,7 @@ const Country = props => {
     <CardColumns>
       <Card bg={"dark"}
       text={"white"} 
-      style={{ width: '18rem' }}>
+      style={{ width: '30rem' }}>
         <Card.Img variant="top" src={props.imgURL} />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
