@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Header from '../components/Header'
 import Profile from '../components/Profile'
 
 class ProfileContainer extends Component {
@@ -16,8 +17,8 @@ class ProfileContainer extends Component {
   render(){
     return(
       <div>
-        <h1>{this.props.selectedCountry.name}</h1>
-          <h3>{this.renderProfile()}</h3>
+        <Header name={this.props.selectedCountry.name}/>
+        <h3>{this.renderProfile()}</h3>
       </div>
     )
   }
@@ -25,7 +26,7 @@ class ProfileContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedCountry: state.countries.selectedCountry
+    selectedCountry: state.selectedCountry
   }
 }
 

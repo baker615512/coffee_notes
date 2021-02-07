@@ -12,7 +12,7 @@ class App extends Component {
       <Router>
         <NavBar />
           <Switch>
-            <Route exact path="/" component={About}/>
+            <Route exact path="/" component={About} />
             <Route exact path="/countries" component={CountriesContainer} />
             <Route exact path="/countries/:id" component={ProfilesContainer} />
           </Switch>
