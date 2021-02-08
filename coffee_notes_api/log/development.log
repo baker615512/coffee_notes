@@ -27784,3 +27784,196 @@ Processing by Api::V1::CountriesController#index as */*
 Completed 200 OK in 77ms (Views: 71.5ms | ActiveRecord: 4.6ms | Allocations: 48455)
 
 
+Started GET "/api/v1/countries" for ::1 at 2021-02-07 21:17:50 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::CountriesController#index as */*
+  [1m[36mCountry Load (0.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.8ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.5ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 2]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 3]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 4]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 5]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+Completed 200 OK in 89ms (Views: 80.3ms | ActiveRecord: 3.4ms | Allocations: 61274)
+
+
+Started GET "/api/v1/countries" for ::1 at 2021-02-07 21:17:56 -0600
+Processing by Api::V1::CountriesController#index as */*
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.3ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.2ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.3ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mFlavor Load (0.4ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 2]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 3]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 4]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."country_id" = ?[0m  [["country_id", 5]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+  [1m[36mCACHE Flavor Load (0.0ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/countries_controller.rb:5:in `index'
+Completed 200 OK in 88ms (Views: 84.2ms | ActiveRecord: 3.3ms | Allocations: 48407)
+
+
+Started PATCH "/api/v1/profiles/20" for ::1 at 2021-02-07 21:18:01 -0600
+Processing by Api::V1::ProfilesController#update as JSON
+  Parameters: {"_json"=>20, "id"=>"20", "profile"=>{}}
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/profiles_controller.rb:4:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/profiles_controller.rb:6:in `update'
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/profiles_controller.rb:6:in `update'
+  [1m[36mFlavor Load (0.1ms)[0m  [1m[34mSELECT "flavors".* FROM "flavors" WHERE "flavors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/profiles_controller.rb:6:in `update'
+  [1m[36mProfile Update (1.0ms)[0m  [1m[33mUPDATE "profiles" SET "votes" = ?, "updated_at" = ? WHERE "profiles"."id" = ?[0m  [["votes", 1], ["updated_at", "2021-02-08 03:18:01.109499"], ["id", 20]]
+  ↳ app/controllers/api/v1/profiles_controller.rb:6:in `update'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/profiles_controller.rb:6:in `update'
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 2.2ms | Allocations: 5493)
+
+
