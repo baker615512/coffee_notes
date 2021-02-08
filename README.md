@@ -8,7 +8,7 @@ I wanted to create a place for everyone to share their experience with coffee fr
 
 ## Tech/framework used
 
-This app implements Rails API for the backend, React JavaScript library, and Redux as the middleware.
+This app implements Rails API for the backend, React JavaScript library, Redux as the middleware, and Bootstrap for styling.
 
 ## Installation
 
