@@ -2,9 +2,9 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
-import {withRouter} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {setCountry} from '../redux/actionCreator'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setCountry } from '../redux/actionCreator'
 
 const Country = props => {
   const handleOnClick = () => {
